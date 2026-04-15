@@ -29,7 +29,7 @@ export class AttendantSelectionMobileComponent implements OnInit, OnDestroy {
     private toastController: ToastController
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {   
     this.loadStore();
     this.loadAttendants();
   }
@@ -39,6 +39,7 @@ export class AttendantSelectionMobileComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  
   loadStore(): void {
     this.attendantService.getCurrentStore()
       .pipe(takeUntil(this.destroy$))

@@ -336,3 +336,99 @@ ion-content::part(scroll) {
 ion-content::part(scroll) {
   padding-bottom: 80px; // ou o tamanho do seu footer
 }
+
+.app-banner {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #007AFF, #5856D6);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.25);
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  &__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      font-size: 20px;
+      color: white;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+
+    strong {
+      font-size: 14px;
+    }
+
+    span {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    background: white;
+    color: #007AFF;
+
+    border: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    ion-icon {
+      font-size: 16px;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.token-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-top: 10px;
+  padding: 8px 10px;
+
+  font-size: 13px;
+  color: var(--ion-color-medium);
+
+  ion-icon {
+    font-size: 16px;
+  }
+}

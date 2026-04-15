@@ -9,8 +9,18 @@ const routes: Routes = [
   },
   {
     path: 'store',
-    loadChildren: () =>import('./features/store/pages/store.module').then(m => m.StoreModule)
-  }
+    loadChildren: () => import('./features/store/pages/store.module').then(m => m.StoreModule)
+  },
+  // {
+  //   path: 'queue/:id',
+  //   loadChildren: () => import('./pages/queue-tracking/queue-tracking.module')
+  //     .then(m => m.QueueTrackingPageModule)
+  // },
+  // {
+  //   path: 'schedule/:id',
+  //   loadChildren: () => import('./pages/schedule-booking/schedule-booking.module')
+  //     .then(m => m.ScheduleBookingPageModule)
+  // }
 ];
 
 @NgModule({
