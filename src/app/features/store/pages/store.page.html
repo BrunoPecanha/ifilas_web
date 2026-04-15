@@ -1,0 +1,20 @@
+<ion-content class="attendant-page">
+
+  <ng-container *ngIf="isMobile; else desktop">
+    <app-store-mobile></app-store-mobile>
+  </ng-container>
+
+  <ng-template #desktop>
+    <app-store-desktop></app-store-desktop>
+  </ng-template>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <div class="page-footer">
+    <div class="footer-content">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span>Seu token anônimo será gerado ao selecionar um profissional</span>
+    </div>
+  </div>
+</ion-footer>

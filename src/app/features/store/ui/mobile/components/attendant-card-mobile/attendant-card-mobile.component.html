@@ -1,0 +1,60 @@
+<div 
+  class="attendant-card" 
+  [class.attendant-card--unavailable]="!attendant.isAvailable"
+  [class.attendant-card--queue]="attendant.type === 'queue'"
+  [class.attendant-card--schedule]="attendant.type === 'schedule'"
+  (click)="onSelect()">
+  
+  <div class="attendant-card__avatar">
+    <div class="avatar" [class.avatar--queue]="attendant.type === 'queue'" 
+         [class.avatar--schedule]="attendant.type === 'schedule'">
+      <span class="avatar__text">{{ getInitials(attendant.name) }}</span>
+    </div>
+    
+    <div class="attendant-card__status" *ngIf="!attendant.isAvailable">
+      <ion-icon name="time-outline"></ion-icon>
+    </div>
+  </div>
+
+  <div class="attendant-card__content">
+    <div class="attendant-card__header">
+      <h3 class="attendant-card__name">{{ attendant.name }}</h3>
+      <span class="attendant-card__badge" [class]="'attendant-card__badge--' + attendant.type">
+        <ion-icon [name]="attendant.type === 'queue' ? 'people' : 'calendar'"></ion-icon>
+        {{ attendant.type === 'queue' ? 'Fila' : 'Agenda' }}
+      </span>
+    </div>
+    
+    <p class="attendant-card__role">{{ attendant.role }}</p>
+    
+    <div class="attendant-card__info" *ngIf="attendant.type === 'queue'">
+      <div class="info-item">
+        <ion-icon name="people-outline"></ion-icon>
+        <span class="info-item__text">
+          <strong>{{ getQueueInfo(attendant).queueLength }}</strong> na fila
+        </span>
+      </div>
+      <div class="info-item">
+        <ion-icon name="time-outline"></ion-icon>
+        <span class="info-item__text">
+          <strong>~{{ getQueueInfo(attendant).estimatedWaitTime }} min</strong> de espera
+        </span>
+      </div>
+    </div>
+
+    <div class="attendant-card__info" *ngIf="attendant.type === 'schedule'">
+      <div class="info-item info-item--schedule">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span class="info-item__text">
+          Próximo horário: <strong>{{ formatNextSlot(getScheduleInfo(attendant).nextAvailableSlot) }}</strong>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="attendant-card__action">
+    <div class="action-button" [class.action-button--disabled]="!attendant.isAvailable">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </div>
+  </div>
+</div>

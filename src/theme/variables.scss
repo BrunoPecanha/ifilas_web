@@ -1,2 +1,64 @@
 // For information on how to create your own theme, please refer to:
 // https://ionicframework.com/docs/theming/
+// src/theme/variables.scss
+:root {
+  // iOS Specific Colors
+  --ion-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  
+  // Primary Colors
+  --ion-color-primary: #007AFF;
+  --ion-color-primary-rgb: 0,122,255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #0066d9;
+  --ion-color-primary-tint: #3385ff;
+  
+  // Background Colors
+  --ion-background-color: #ffffff;
+  --ion-background-color-rgb: 255,255,255;
+  --ion-text-color: #000000;
+  --ion-text-color-rgb: 0,0,0;
+  --ion-border-color: #c6c6c8;
+  
+  // iOS Specific Variables
+  --ios-border-radius: 10px;
+  --ios-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --ios-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Dark Mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #000000;
+    --ion-background-color-rgb: 0,0,0;
+    --ion-text-color: #ffffff;
+    --ion-text-color-rgb: 255,255,255;
+    --ion-border-color: #38383a;
+    --ios-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Global iOS Styles
+.ios-card {
+  background: var(--ion-background-color);
+  border-radius: var(--ios-border-radius);
+  box-shadow: var(--ios-card-shadow);
+  transition: var(--ios-transition);
+}
+
+.ios-alert {
+  --backdrop-opacity: 0.4;
+  --border-radius: 13px;
+}
+
+// Smooth animations
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// PWA optimizations
+@media (display-mode: standalone) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

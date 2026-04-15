@@ -1,10 +1,10 @@
 import { Component, HostListener } from '@angular/core';
 import { DeviceService } from 'src/app/core/services/device';
 
-
 @Component({
   selector: 'app-store',
   templateUrl: './store.page.html',
+  styleUrls: ['./store.page.scss'],
   standalone: false
 })
 export class StorePage {

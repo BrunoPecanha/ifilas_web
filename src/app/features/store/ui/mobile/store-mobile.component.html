@@ -1,0 +1,20 @@
+<div class="mobile-store">
+
+  <!-- STEP 1 -->
+  <app-attendant-selection-mobile
+    *ngIf="step === 'attendant'"
+    (onSelect)="goToServices()">
+  </app-attendant-selection-mobile>
+
+  <!-- STEP 2 
+  <app-service-selection-mobile
+    *ngIf="step === 'service'"
+    (onNext)="goToPayment()">
+  </app-service-selection-mobile>
+
+  STEP 3
+  <app-payment-selection-mobile
+    *ngIf="step === 'payment'">
+  </app-payment-selection-mobile>-->
+
+</div>
