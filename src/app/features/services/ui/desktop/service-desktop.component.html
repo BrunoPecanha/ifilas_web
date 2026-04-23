@@ -1,9 +1,117 @@
 <div class="desktop-store">
-  <h2>Versão Desktop</h2>
+  <div class="desktop-container">
+    <!-- Header da versão desktop -->
+    <div class="desktop-header" [class.scrolled]="headerScrolled">
+      <div class="header-content">
+        <button class="back-btn" (click)="getBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </button>
+        <div class="header-text">
+          <h1 class="desktop-title">Nossos Serviços</h1>
+          <p class="desktop-subtitle">Escolha os serviços que deseja</p>
+        </div>
+      </div>
+    </div>
 
-  <div class="grid">
-    <button>Entrar na fila</button>
-    <button>Ver lojas</button>
-    <button>Histórico</button>
+    <!-- Conteúdo principal -->
+    <div class="services-content">
+      <section class="card-section">
+        <div class="services-list">
+          <div
+            class="service-card"
+            *ngFor="let service of serviceOptions; trackBy: trackByServiceId"
+            [class.selected]="isServiceSelected(service)"
+            [class.animating]="animatingAdd[service.id]"
+            (click)="openServiceDetail(service)"
+          >
+            <div class="service-image">
+              <img
+                *ngIf="service.imgPath"
+                [src]="service.imgPath"
+                [alt]="service.name"
+              />
+              <div class="placeholder" *ngIf="!service.imgPath">
+                <ion-icon name="cut-outline"></ion-icon>
+              </div>
+            </div>
+
+            <div class="service-info">
+              <h3 class="service-name">{{ service.name }}</h3>
+              <p class="service-category" *ngIf="service.category?.name">
+                {{ service.category?.name }}
+              </p>
+              <p class="service-description" *ngIf="service.description">
+                {{ service.description }}
+              </p>
+              
+              <div class="price-time-info">
+                <div class="price-info">
+                  <span class="price-label">Preço:</span>
+                  <span class="price-value">
+                    {{ service.variablePrice ? 'A combinar' : ('R$ ' + (service.price | number:'1.2-2')) }}
+                  </span>
+                </div>
+                <div class="time-info">
+                  <span class="time-label">Tempo:</span>
+                  <span class="time-value">
+                    {{ service.variableTime ? 'A definir' : (service.duration + ' min') }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-control-area">
+              <div class="only-add" *ngIf="getQuantity(service) === 0">
+                <button
+                  class="add-btn"
+                  (click)="onAddBtnClick(service, $event)"
+                  title="Adicionar"
+                >
+                  <ion-icon name="add"></ion-icon>
+                </button>
+              </div>
+
+              <div class="qty-control" *ngIf="getQuantity(service) > 0">
+                <button
+                  class="qty-btn minus"
+                  (click)="decrementServiceForUi(service, $event)"
+                  aria-label="Diminuir"
+                >
+                  -
+                </button>
+                <div class="qty-value">{{ getQuantity(service) }}</div>
+                <button
+                  class="qty-btn plus"
+                  (click)="incrementServiceForUi(service, $event)"
+                  aria-label="Aumentar"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Summary Section -->
+        <div class="summary-section" *ngIf="selectedServices.length > 0">
+          <div class="summary-content">
+            <div class="summary-info">
+              <div class="summary-label">Resumo do pedido</div>
+              <div class="summary-items">
+                {{ selectedServices.length }} {{ selectedServices.length === 1 ? 'item' : 'itens' }}
+              </div>
+              <div class="summary-price">{{ totalPriceString }}</div>
+              <div class="summary-time">{{ totalTimeString }}</div>
+            </div>
+            <button class="continue-btn" (click)="confirmSelection()">
+              Continuar
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </div>
+
+<app-custom-footer></app-custom-footer>

@@ -1,0 +1,74 @@
+<ion-header class="floating-header" mode="ios" [class.header-hidden]="hideOnScroll && isHidden" [class.floating-header]="floating">
+  <ion-toolbar class="floating-toolbar">
+    <ion-buttons slot="start">
+      <ion-button
+        *ngIf="showStartButton"
+        fill="clear"
+        class="icon-wrapper"
+        (click)="handleStartButtonClick()"
+        [disabled]="startDisabled || startLoading"
+      >
+        <ng-container *ngIf="!startLoading; else startSpinner">
+          <ion-icon [name]="startIconName" slot="icon-only"></ion-icon>
+        </ng-container>
+        <ng-template #startSpinner>
+          <ion-spinner name="crescent" slot="icon-only"></ion-spinner>
+        </ng-template>
+      </ion-button>
+      <ng-content select="[left-buttons]"></ng-content>
+    </ion-buttons>
+
+    <ion-title class="title-container">
+      <div class="title">{{ title }}</div>
+      <div
+        *ngIf="subtitle && !hideSubtitle"
+        class="subtitle"
+        [class.hidden]="hideSubtitle"
+      >
+        {{ subtitle }}
+      </div>
+      <div
+        *ngIf="otherSubtitle && !hideOtherSubtitle"
+        class="other-subtitle"
+        [class.hidden]="hideOtherSubtitle"
+      >
+        {{ otherSubtitle }}
+      </div>
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <div class="notification-host">
+        <ion-button
+          *ngIf="showEndButton"
+          fill="clear"
+          class="icon-wrapper"
+          (click)="onEndButtonClick()"
+          [disabled]="endDisabled || endLoading"
+          aria-label="Notificações"
+        >
+          <ng-container *ngIf="!endLoading; else endSpinner">
+            <ion-icon [name]="endIconName" slot="icon-only"></ion-icon>
+          </ng-container>
+          <ng-template #endSpinner>
+            <ion-spinner name="crescent" slot="icon-only"></ion-spinner>
+          </ng-template>
+        </ion-button>
+
+        <span
+          class="notification-badge"
+          *ngIf="showNotificationBadge && hasNotifications()"
+          aria-hidden="false"
+        >{{ displayNotificationText() }}</span>       
+      </div>
+
+      <ng-content select="[right-buttons]"></ng-content>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div *ngIf="hideOnScroll && isHidden && showNotificationBadge && hasNotifications()" 
+     class="floating-counters">
+  <div class="counter-badge">
+    {{ displayNotificationText() }}
+  </div>
+</div>

@@ -1,0 +1,408 @@
+// Variáveis
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$primary-color: #667eea;
+$primary-hover: #5a67d8;
+$text-dark: #111827;
+$text-gray: #6b7280;
+$text-light: #4b5563;
+$border-color: #e5e7eb;
+$background-light: #f8f9fa;
+$card-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+$transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.services-content {
+  --background: #f8f9fa;
+  background-color: $background-light;
+  min-height: 100vh;
+  position: relative;
+
+  // Container principal
+  .services-container {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 16px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  // Card de serviço
+  .service-card {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    background: white;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: $transition-default;
+    border: 1px solid $border-color;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $primary-gradient;
+      opacity: 0;
+      transition: $transition-default;
+      z-index: 0;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &.selected {
+      border-color: $primary-color;
+      background: linear-gradient(white, white) padding-box,
+                  $primary-gradient border-box;
+      border: 2px solid transparent;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+    }
+
+    &.animating {
+      animation: pulse 0.5s ease;
+    }
+
+    > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  // Imagem do serviço
+  .service-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f1f3f9 0%, #e8ecf4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .placeholder {
+      ion-icon {
+        font-size: 2rem;
+        color: #9ca3af;
+      }
+    }
+  }
+
+  // Informações
+  .service-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .service-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin: 0 0 4px;
+    line-height: 1.3;
+  }
+
+  .service-category {
+    font-size: 0.7rem;
+    color: $text-gray;
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+
+  .service-description {
+    font-size: 0.75rem;
+    color: $text-light;
+    margin: 0 0 8px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .price-time-info {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .price-info, .time-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+  }
+
+  .info-icon {
+    font-size: 0.9rem;
+    color: $primary-color;
+  }
+
+  .price-value {
+    font-weight: 700;
+    color: $primary-color;
+  }
+
+  .time-value {
+    color: $text-gray;
+  }
+
+  // Controles
+  .card-control-area {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .only-add {
+    .add-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: $primary-gradient;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: $transition-default;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+
+      &:active {
+        transform: scale(0.95);
+      }
+
+      ion-icon {
+        font-size: 1.4rem;
+        color: white;
+      }
+    }
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f9fafb;
+    padding: 4px 8px;
+    border-radius: 12px;
+    border: 1px solid $border-color;
+
+    .qty-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1px solid $border-color;
+      background: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: $transition-default;
+
+      &.plus {
+        color: $primary-color;
+        
+        &:active {
+          background: $primary-color;
+          color: white;
+        }
+      }
+
+      &.minus {
+        color: #ef4444;
+        
+        &:active {
+          background: #ef4444;
+          color: white;
+        }
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+
+    .qty-value {
+      min-width: 24px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+  }
+
+  // Espaçador do footer
+  .footer-spacer {
+    height: 80px;
+  }
+}
+
+// SUMMARY BAR - Estilo principal (fora do .services-content)
+.summary-bar {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid $border-color;
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  z-index: 1000;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+
+  .summary-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .summary-info {
+    flex: 1;
+
+    .summary-items {
+      font-size: 0.7rem;
+      color: $text-gray;
+      margin-bottom: 2px;
+    }
+
+    .summary-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $primary-color;
+      line-height: 1.2;
+    }
+
+    .summary-time {
+      font-size: 0.7rem;
+      color: $text-gray;
+    }
+  }
+
+  .continue-btn {
+    background: $primary-gradient;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: $transition-default;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    ion-icon {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Footer dinâmico - sobe quando o summary aparece
+app-custom-footer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  transition: transform 0.3s ease;
+  
+  &.has-summary {
+    transform: translateY(-80px);
+  }
+}
+
+// Ajuste do spacer quando o summary está visível
+.services-content.has-summary {
+  .footer-spacer {
+    height: 160px; // 80px normal + 80px do summary
+  }
+}
+
+// Animações
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.loading-card {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 16px;
+  height: 100px;
+}
+
+// Remove scrollbar
+ion-content::part(scroll) {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+ion-content::part(scroll)::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+// Responsivo
+@media (max-width: 768px) {
+  .summary-bar {
+    padding: 10px 16px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+  
+  .services-content.has-summary .footer-spacer {
+    height: 150px;
+  }
+  
+  app-custom-footer.has-summary {
+    transform: translateY(-70px);
+  }
+}

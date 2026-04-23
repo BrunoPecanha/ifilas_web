@@ -1,0 +1,22 @@
+<div class="custom-footer" *ngIf="platform !== 'web'">
+  <div class="app-banner-footer">
+    <div class="app-banner-footer__content">
+      <ion-icon name="alarm-outline"></ion-icon>
+
+      <div>
+        <strong>Não perca sua vez 🔔</strong>
+        <span>Receba avisos automáticos no app</span>
+      </div>
+    </div>
+
+    <button class="store-button" (click)="redirectToStore()">
+      <ion-icon [name]="platform === 'android' ? 'logo-android' : 'logo-apple'">
+      </ion-icon>
+
+      <div class="store-button__text">
+        <small>Baixar no</small>
+        <strong> {{ platform === 'android' ? 'Android' : 'iPhone' }} </strong>
+      </div>
+    </button>
+  </div>
+</div>

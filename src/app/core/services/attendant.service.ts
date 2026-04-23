@@ -34,7 +34,9 @@ export class AttendantService {
         isAvailable: true,
         queueLength: 3,
         estimatedWaitTime: 25,
-        currentTicket: 47
+        currentTicket: 47,
+         workingHours: null,
+        nextAvailableSlot: new Date()
       },
       {
         id: 'att-002',
@@ -44,7 +46,9 @@ export class AttendantService {
         isAvailable: true,
         queueLength: 5,
         estimatedWaitTime: 40,
-        currentTicket: 32
+        currentTicket: 32,
+        workingHours: null,
+        nextAvailableSlot: new Date()
       },
       {
         id: 'att-003',
@@ -54,7 +58,9 @@ export class AttendantService {
         isAvailable: true,
         queueLength: 2,
         estimatedWaitTime: 15,
-        currentTicket: 18
+        currentTicket: 18,
+         workingHours: null,
+        nextAvailableSlot: new Date()
       },
       {
         id: 'att-004',
@@ -66,7 +72,10 @@ export class AttendantService {
         workingHours: {
           start: '09:00',
           end: '18:00'
-        }
+        },
+        queueLength: 0,
+        currentTicket: 0,
+        estimatedWaitTime: 0
       },
       {
         id: 'att-005',
@@ -78,7 +87,10 @@ export class AttendantService {
         workingHours: {
           start: '10:00',
           end: '19:00'
-        }
+        },
+        queueLength: 0,
+        currentTicket: 0,
+        estimatedWaitTime: 0
       },
       {
         id: 'att-006',
@@ -87,7 +99,10 @@ export class AttendantService {
         type: 'queue',
         isAvailable: false,
         queueLength: 8,
-        estimatedWaitTime: 65
+        estimatedWaitTime: 65,
+        nextAvailableSlot: new Date,
+        currentTicket: 0,
+        workingHours: undefined
       }
     ];
 

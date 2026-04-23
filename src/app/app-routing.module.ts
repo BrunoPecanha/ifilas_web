@@ -11,11 +11,10 @@ const routes: Routes = [
     path: 'store',
     loadChildren: () => import('./pages/store/store.module').then(m => m.StoreModule)
   },
-  // {
-  //   path: 'queue/:id',
-  //   loadChildren: () => import('./pages/queue-tracking/queue-tracking.module')
-  //     .then(m => m.QueueTrackingPageModule)
-  // },
+  {
+     path: 'service/:id',
+     loadChildren: () => import('./pages/service/service.module').then(m => m.ServiceModule)       
+   },
   // {
   //   path: 'schedule/:id',
   //   loadChildren: () => import('./pages/schedule-booking/schedule-booking.module')
